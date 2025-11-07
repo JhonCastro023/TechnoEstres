@@ -1,6 +1,6 @@
 GUIA DE INSTALACIÓN
 
-Se asume que ya se tiene instalado VsCode i Git
+Se asume que ya se tiene instalado VsCode y Git
 
 Primeramente es necesario copiar el siguiente enlace:
 
