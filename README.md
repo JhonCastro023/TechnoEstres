@@ -74,3 +74,4 @@ Esto hará que se inicie en el navegador predeterminado la página de technoestr
 
 Perfecto, la aplicación está lista para probar.
 
+psdt: cualquier nombre de usuario y contraseña funciona para probar la app.
