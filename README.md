@@ -1,6 +1,11 @@
 ¿Cómo ver las actualizaciones de la página?
 
-Debes entrar a VsCode y ubicarte en el proyecto, luego debes presionar las teclas Ctrl + Shift + P:
+Debes entrar a VsCode y ubicarte en el proyecto:
+
+<img width="1840" height="1080" alt="image" src="https://github.com/user-attachments/assets/e25f23fd-d6be-4a8a-b46f-64e61f8383b4" />
+
+
+Luego debes presionar las teclas Ctrl + Shift + P:
 
 <img width="581" height="279" alt="image" src="https://github.com/user-attachments/assets/51516725-2e47-4025-8feb-72241a096eed" />
 
