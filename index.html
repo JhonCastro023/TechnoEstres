@@ -2,63 +2,181 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>TechonEstres - TypeScript</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TechnoEstrés — Experiencia</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div id="app">
-    <section id="login-screen" class="screen active">
-      <div class="card left-card">
-        <h1>¡Bienvenid@!</h1>
-        <p>Sign up para acceder a miles de bonos de descuentos de tus marcas favoritas</p>
-        <label>Nombre de usuario
-          <input id="username" type="text" />
-        </label>
-        <label>Contraseña
-          <input id="password" type="password" />
-        </label>
-        <button id="login-btn" class="btn">Ingresar</button>
+
+    <!-- 1 - Pantalla Principal (Landing / Login) -->
+    <section id="landing-screen" class="screen active">
+      <header class="topbar">
+        <img src="assets/logo.png" alt="logo" class="top-logo" />
+        <nav class="navlinks">
+          <a>Colaboradores</a>
+          <a>Objetivos</a>
+          <a>Redes</a>
+        </nav>
+      </header>
+
+      <main class="hero">
+        <h1>Descuentos, cupones y oportunidades de ahorro</h1>
+        <p>Lifehack es tu catálogo en tiempo real de los descuentos y actualizaciones de tus marcas favoritas.</p>
+        <button id="go-to-signup" class="primary">Regístrate</button>
+      </main>
+    </section>
+
+    <!-- 2 - Pantalla Registro -->
+    <section id="signup-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="signup-card">
+        <h2>Regístrate para personalizar tu página de descuentos</h2>
+        <label>Nombre <input id="name" type="text" /></label>
+        <label>Apellido <input id="lastname" type="text" /></label>
+        <label>Nombre de usuario <input id="username" type="text" /></label>
+        <label>Contraseña <input id="password" type="password" /></label>
+        <button id="signup-btn" class="primary">Sign up</button>
       </div>
-      <div class="card right-card">
-        <div class="brand-box">
-            <img src="assets/marcas.png" alt="Marcas" class="brands-img" />
+    </section>
+
+    <!-- 3 - Barra de carga (reutilizable) -->
+    <section id="progress-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="progress-wrap">
+        <div class="progress-bar-bg">
+          <div id="progress-fill" class="progress-fill"></div>
         </div>
-    </div>
-    </section>
-
-    <section id="loading-screen" class="screen">
-      <div class="loading-card">
-        <div class="spinner"></div>
-        <p>Espera un momento...</p>
+        <p id="progress-msg" class="progress-msg">Un momento, estamos creando tu cuenta...</p>
       </div>
     </section>
 
-    <section id="captcha-screen" class="screen">
+    <!-- 4 - Captcha 1 (elige la figura) -->
+    <section id="captcha1-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
       <div class="captcha-card">
-        <h2 id="captcha-title">Captcha</h2>
-        <canvas id="captcha-canvas" width="600" height="360"></canvas>
-        <div id="captcha-controls"></div>
+        <h2>Captcha 1 — Haz clic en el círculo</h2>
+        <canvas id="captcha-canvas" width="700" height="360"></canvas>
         <div id="captcha-hint" class="hint"></div>
       </div>
     </section>
 
-    <section id="final-loading-screen" class="screen">
-      <div class="loading-card">
-        <div class="spinner large"></div>
-        <p>Procesando...</p>
+    <!-- 5 - Pantalla Botón "¡Inténtalo de nuevo!" -->
+    <section id="retry-btn-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="center-card">
+        <button id="retry-btn" class="big-cta">¡Inténtalo de nuevo!</button>
       </div>
     </section>
 
-    <section id="error-screen" class="screen">
-      <div class="error-card">
-        <div class="spinner"></div>
-        <h2>¡Lo sentimos! Estamos teniendo problemas técnicos.</h2>
-        <p>Estamos solucionándolos lo más rápido posible…</p>
+    <!-- 6 - Captcha 2 (ruido + figura) -->
+    <section id="captcha2-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="captcha-card">
+        <h2>Captcha 2 — Encuentra el triángulo</h2>
+        <canvas id="captcha2-canvas" width="700" height="360"></canvas>
+        <div id="captcha2-hint" class="hint"></div>
       </div>
     </section>
+
+    <!-- 7 - Captcha 3 (multi-pasos) -->
+    <section id="captcha3-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="captcha-card">
+        <h2>Captcha 3 — Selecciona en orden</h2>
+        <canvas id="captcha3-canvas" width="700" height="360"></canvas>
+        <div id="captcha3-hint" class="hint"></div>
+      </div>
+    </section>
+
+    <!-- 8 - Captcha 4 (texto legible) -->
+    <section id="captcha4-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="captcha-card">
+        <h2>Captcha 4 — Escribe el texto que ves</h2>
+        <canvas id="captcha4-canvas" width="700" height="160"></canvas>
+        <div class="controls" id="captcha4-controls"></div>
+        <div id="captcha4-hint" class="hint"></div>
+      </div>
+    </section>
+
+    <!-- 9 - Captcha 5 (texto ilegible) -->
+    <section id="captcha5-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="captcha-card">
+        <h2>Captcha 5 — Texto distorsionado</h2>
+        <canvas id="captcha5-canvas" width="700" height="160"></canvas>
+        <div class="controls" id="captcha5-controls"></div>
+        <div id="captcha5-hint" class="hint"></div>
+      </div>
+    </section>
+
+    <!-- 10 - Pantalla "¡Oh no! Error inesperado." -->
+    <section id="error1-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="center-card">
+        <img src="assets/x-icon.png" class="big-icon" alt="error" />
+        <h3>¡Oh no! Error inesperado.</h3>
+      </div>
+    </section>
+
+    <!-- 11 - Barra after captcha2 (message: ¡Excelente!...) reuses progress-screen via function calls -->
+
+    <!-- 12 - Error screen 2 with retry button (image + button) -->
+    <section id="error2-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="center-card">
+        <img src="assets/x-icon.png" class="big-icon" alt="error" />
+        <button id="error2-retry" class="big-cta">¡Inténtalo de nuevo!</button>
+      </div>
+    </section>
+
+    <!-- 13 - Final error message "Ha ocurrido un error inesperado, vuelve más tarde." -->
+    <section id="fatal-error-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="center-card">
+        <img src="assets/x-icon.png" class="big-icon" alt="fatal" />
+        <h3>Ha ocurrido un error inesperado, vuelve más tarde.</h3>
+      </div>
+    </section>
+
+    <!-- 14 - Confirmation "progreso guardado" with check -->
+    <section id="saved-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="center-card">
+        <img src="assets/check-icon.png" class="big-icon" alt="guardado" />
+        <h3>Pero tranquilo, ¡tu progreso está guardado!</h3>
+        <button id="continue-now" class="big-cta">¡Continúa ahora sí!</button>
+      </div>
+    </section>
+
+    <!-- 15 - QA screen with emoticons -->
+    <section id="qa-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="qa-card">
+        <h3>¿Valió la pena?</h3>
+        <div class="emoticons">
+          <button class="emo" data-value="1">😞</button>
+          <button class="emo" data-value="2">😕</button>
+          <button class="emo" data-value="3">😐</button>
+          <button class="emo" data-value="4">🙂</button>
+          <button class="emo" data-value="5">😄</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 16 - Final thank-you -->
+    <section id="thankyou-screen" class="screen">
+      <img src="assets/logo.png" class="corner-logo" alt="logo" />
+      <div class="center-card">
+        <h2>¡Muchas gracias por tu tiempo!</h2>
+        <p>¡Esta experiencia explora el tecnoestrés digital!</p>
+      </div>
+    </section>
+
   </div>
 
-  <script src="./dist/main.js" type="module"></script>
+  <!-- load compiled js -->
+  <script src="dist/main.js" type="module"></script>
 </body>
 </html>
