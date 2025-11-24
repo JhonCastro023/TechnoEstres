@@ -1,3 +1,25 @@
+¿Cómo ver las actualizaciones de la página?
+
+Debes entrar a VsCode y ubicarte en el proyecto:
+
+<img width="1840" height="1080" alt="image" src="https://github.com/user-attachments/assets/e25f23fd-d6be-4a8a-b46f-64e61f8383b4" />
+
+
+Luego debes presionar las teclas Ctrl + Shift + P:
+
+<img width="581" height="279" alt="image" src="https://github.com/user-attachments/assets/51516725-2e47-4025-8feb-72241a096eed" />
+
+luego te aparecerá esto en la barra de arriba: 
+<img width="779" height="483" alt="image" src="https://github.com/user-attachments/assets/8fc978fb-057d-489d-a214-31e2e0bda789" />
+
+Simplemente escibe "pull" y presiona enter:
+
+<img width="748" height="301" alt="image" src="https://github.com/user-attachments/assets/1eb5a5f2-07ea-4433-bb7e-19502fbeec0e" />
+
+
+Finalmente, abre la página como lo haces normalmente :)
+
+
 GUIA DE INSTALACIÓN
 
 Se asume que ya se tiene instalado VsCode y Git
