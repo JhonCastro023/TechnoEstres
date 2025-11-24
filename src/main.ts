@@ -6,7 +6,7 @@ type ScreenId =
   | "captcha1-screen" | "retry-btn-screen" | "captcha2-screen"
   | "captcha3-screen" | "captcha4-screen" | "captcha5-screen"
   | "error1-screen" | "error2-screen" | "fatal-error-screen"
-  | "saved-screen" | "qa-screen" | "thankyou-screen";
+  | "saved-screen" | "qa-screen" | "thankyou-screen" | "continued-screen";
 
 function $(id: string): HTMLElement {
   const el = document.getElementById(id);
@@ -40,6 +40,151 @@ function show(screenId: ScreenId) {
     initCaptcha5();
   }
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const retryBtn = document.getElementById("retry-btn");
+
+  if (retryBtn) {
+    retryBtn.addEventListener("click", () => {
+      console.log("CLICK EN RETRY → mostrando captcha2");
+      show("captcha2-screen");
+      initCaptcha2();
+    });
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const errorScreen = document.getElementById("error1-screen");
+
+  if (errorScreen) {
+    // Cuando se muestre esta pantalla, esperar un segundo y saltar al captcha 4
+    const obs = new MutationObserver(() => {
+      if (errorScreen.classList.contains("active")) {
+        console.log("ERROR1 activo → pasando a captcha 4...");
+        setTimeout(() => {
+          show("captcha4-screen");
+          initCaptcha4();
+        }, 1200);
+      }
+    });
+
+    obs.observe(errorScreen, { attributes: true });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const error2Screen = document.getElementById("error2-screen");
+
+  if (error2Screen) {
+    const observer = new MutationObserver(() => {
+      if (error2Screen.classList.contains("active")) {
+        const retryBtn = document.getElementById("error2-retry");
+
+        if (retryBtn) {
+          // Eliminar listeners previos para evitar duplicados
+          retryBtn.replaceWith(retryBtn.cloneNode(true));
+          const newBtn = document.getElementById("error2-retry");
+
+          newBtn?.addEventListener("click", () => {
+            console.log("CLICK EN RETRY → iniciando progreso hacia fatal-error");
+            startProgress({
+              initialMsg: "Últimos pasos... puedes hacerlo.",
+              onComplete: () => show("fatal-error-screen"),
+              speedMs: 20
+            });
+          });
+        }
+      }
+    });
+
+    observer.observe(error2Screen, { attributes: true });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const progressScreen = document.getElementById("progress-screen-a");
+
+  if (progressScreen) {
+    const obs = new MutationObserver(() => {
+      // Cuando la pantalla PROGRESS se active…
+      if (progressScreen.classList.contains("active")) {
+        console.log("progress-screen-a ACTIVO → mostrando mensaje 'Espera...'");
+
+        const msg = document.getElementById("progress-fill");
+        if (msg) msg.textContent = "Espera...";
+      }
+    });
+
+    obs.observe(progressScreen, { attributes: true });
+  }
+});
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const fatal = document.getElementById("fatal-error-screen");
+
+  if (fatal) {
+    const obs = new MutationObserver(() => {
+      if (fatal.classList.contains("active")) {
+        console.log("Fatal error activo → pasando a saved-screen...");
+        
+        setTimeout(() => {
+          show("saved-screen");
+        }, 1400);
+      }
+    });
+
+    obs.observe(fatal, { attributes: true });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const fatal = document.getElementById("saved-screen");
+
+  if (fatal) {
+    const obs = new MutationObserver(() => {
+      if (fatal.classList.contains("active")) {
+        console.log("Fatal error activo → pasando a continued-screen...");
+        
+        setTimeout(() => {
+          show("continued-screen");
+        }, 1400);
+      }
+    });
+
+    obs.observe(fatal, { attributes: true });
+  }
+});
+  document.addEventListener("DOMContentLoaded", () => {
+  const errorScreen = document.getElementById("continued-screen");
+
+  if (errorScreen) {
+    // Cuando se muestre esta pantalla, esperar un segundo y saltar al captcha 4
+    const obs = new MutationObserver(() => {
+      if (errorScreen.classList.contains("active")) {
+        console.log("ERROR1 activo → pasando a qa-screen");
+        setTimeout(() => {
+          show("qa-screen");
+        }, 1200);
+      }
+    });
+
+    obs.observe(errorScreen, { attributes: true });
+  }
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const emos = document.querySelectorAll(".emo");
+
+  emos.forEach(btn => {
+    btn.addEventListener("click", () => {
+      console.log("EMO CLICK → pasando a thankyou-screen");
+      show("thankyou-screen");
+    });
+  });
+});
+
+
+
+
 
 
 
@@ -490,11 +635,11 @@ window.addEventListener("load", () => {
   //initCaptcha3();
   //initCaptcha4();
   //initCaptcha5();
-
+  //retry-btn
   // Retry button after captcha1
-  document.getElementById("retry-btn")?.addEventListener("click", () => {
-    show("captcha2-screen");
-  });
+  
+
+  
 
   // error1-screen shows then move to captcha4
   // We'll attach a timed transition from error1-screen to captcha4 when that screen shown
@@ -520,34 +665,16 @@ window.addEventListener("load", () => {
   if (id === "retry-btn-screen") {
     const retryBtn = document.getElementById("retry-btn");
     retryBtn?.addEventListener("click", () => {
-      show("captcha2-screen");
+      initCaptcha2();
     });
-  }
-
-  /* -------- Captcha 2 -------- */
-  if (id === "captcha2-screen") {
-    initCaptcha2();
-  }
-
-  /* -------- Captcha 3 -------- */
-  if (id === "captcha3-screen") {
-    initCaptcha3();
-  }
-
-  /* -------- Captcha 4 -------- */
-  if (id === "captcha4-screen") {
-    initCaptcha4();
-  }
-
-  /* -------- Captcha 5 -------- */
-  if (id === "captcha5-screen") {
-    initCaptcha5();
   }
 
   /* -------- Error inesperado 1 -------- */
   if (id === "error1-screen") {
-    setTimeout(() => show("captcha4-screen"), 1200);
-  }
+  setTimeout(() => {
+    initCaptcha4();
+  }, 1200);
+}
 
   /* -------- Error con botón (Error 2) -------- */
   if (id === "error2-screen") {
@@ -568,11 +695,17 @@ window.addEventListener("load", () => {
 
   /* -------- Pantalla 'tu progreso está guardado' -------- */
   if (id === "saved-screen") {
+    setTimeout(() => show("continued-screen"), 1400);
+  }
+
+  if (id === "continued-screen") {
     const cont = document.getElementById("continue-now");
     cont?.addEventListener("click", () => {
       show("qa-screen");
     });
   }
+
+
 
   /* -------- QA screen emoticons -------- */
   if (id === "qa-screen") {
@@ -583,6 +716,7 @@ window.addEventListener("load", () => {
     });
   }
 
+  
 }, 200);
 
 

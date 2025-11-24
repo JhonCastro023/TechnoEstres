@@ -5,6 +5,40 @@
   --card-bg: #ffffff;
   --muted: #58607a;
 }
+#landing-screen {
+  position: relative;
+  overflow: hidden;
+  background-image: url("assets/landing-bg.jpg");
+  background-size: cover;         /* que cubra toda la pantalla */
+  background-position: center;    /* centrado */
+  background-repeat: no-repeat;   /* evitar repetición */
+  min-height: 100vh;              /* que ocupe toda la altura */
+  width: 100%;
+}
+/* Fondo para TODAS las pantallas excepto la primera */
+.screen:not(#landing-screen) {
+  background-image: url("assets/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Imágenes de esquina */
+.corner-img {
+  position: absolute;
+  bottom: 0;
+  width: 280px;      /* ajusta según tu imagen */
+  opacity: 0.9;      /* opcional */
+  pointer-events: none; /* evita interferir con clics */
+}
+
+.corner-img.left {
+  left: 0;
+}
+
+.corner-img.right {
+  right: 0;
+}
 
 *{box-sizing:border-box;font-family: "Montserrat", "Inter", sans-serif}
 html,body,#app{height:100%;margin:0;background: linear-gradient(to bottom,#eef2ff,#ffffff);}
@@ -15,11 +49,17 @@ html,body,#app{height:100%;margin:0;background: linear-gradient(to bottom,#eef2f
 
 /* topbar / logos */
 .topbar{position:absolute;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:12px 28px;background:linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.3));backdrop-filter: blur(6px)}
-.top-logo{width:46px}
+.top-logo {
+  width: 240px;       /* Ajusta según la imagen real */
+  height: auto;
+  object-fit: contain;
+  image-rendering: auto;
+}
+
 .navlinks a{margin:0 16px;color:var(--accent1);font-weight:600;cursor:pointer}
 
 /* corner logo for other screens */
-.corner-logo{position:absolute;left:22px;top:22px;width:58px;opacity:0.95}
+.corner-logo{position:absolute;left:22px;top:0px;width:150px;opacity:0.95}
 
 /* hero */
 .hero{max-width:820px;text-align:center;margin-top:40px}
